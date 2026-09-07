@@ -17,3 +17,4 @@
         <p>Nenhum aluno cadastrado.</p>
     @endif
 @endsection
+<h1>Lista de Alunos</h1>

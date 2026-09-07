@@ -6,3 +6,4 @@
     <h1>{{ $aluno->nome }}</h1>
     <p>Curso: {{ $aluno->curso }}</p>
 @endsection
+<h1>Detalhes do Aluno</h1>

@@ -16,3 +16,4 @@
         <button type="submit">Salvar</button>
     </form>
 @endsection
+<h1>Cadastrar Aluno</h1>
