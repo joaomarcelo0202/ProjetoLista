@@ -2,44 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;   
+use App\Models\Aluno;
+use Illuminate\Http\Request;
 
 class AlunoController extends Controller
 {
-    //7 metodos do CRUD
-
     public function index()
     {
-        return "return do metodo index: Listar todos os registros";
+        $alunos = Aluno::all();
+        return view('alunos.index', compact('alunos'));
     }
 
-    public function show()
+    public function show($id)
     {
-        return "return do metodo index: Listar detalhes de apenas um registro";
+        $aluno = Aluno::findOrFail($id);
+        return view('alunos.show', compact('aluno'));
     }
 
     public function create()
     {
-        return "return do metodo create: Adicionar novos dados";
+        return view('alunos.create');
     }
 
-    public function store(){
-        return"return do metodo store: Dados salvos";
-    }
-
-    public function edit()
+    public function store(Request $request)
     {
-        return "return do metodo edit: Formulário para editar.";
+        Aluno::create($request->all());
+        return redirect('/alunos');
     }
 
-    public function update()
+    public function edit($id)
     {
-        return "return do metodo update: registro atualizados e salvos.";
+        $aluno = Aluno::findOrFail($id);
+        return view('alunos.edit', compact('aluno'));
     }
 
-    public function destroy()
+    public function update(Request $request, $id)
     {
-        return "return do metodo destroy: registro removido.";
+        $aluno = Aluno::findOrFail($id);
+        $aluno->update($request->all());
+        return redirect('/alunos');
     }
 
+    public function destroy($id)
+    {
+        Aluno::destroy($id);
+        return redirect('/alunos');
+    }
 }
