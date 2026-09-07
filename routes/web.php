@@ -27,3 +27,5 @@ Route::get('/categoria/{id}', function ($id) {
 Route::get('/usuario/{id}', function ($id) {
     return 'Usuário de id: ' . $id;
 });
+
+Route::resource('alunos', AlunoController::class);
