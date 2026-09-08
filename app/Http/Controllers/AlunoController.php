@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Aluno;
 use Illuminate\Http\Request;
+use App\Http\Requests\AlunoRequest;    
 
 class AlunoController extends Controller
 {
@@ -24,24 +25,23 @@ class AlunoController extends Controller
         return view('alunos.create');
     }
 
-    public function store(Request $request)
-    {
-        Aluno::create($request->all());
-        return redirect('/alunos');
-    }
-
+public function store(AlunoRequest $request)
+{
+    Aluno::create($request->validated());
+    return redirect('/alunos');
+}
     public function edit($id)
     {
         $aluno = Aluno::findOrFail($id);
         return view('alunos.edit', compact('aluno'));
     }
 
-    public function update(Request $request, $id)
-    {
-        $aluno = Aluno::findOrFail($id);
-        $aluno->update($request->all());
-        return redirect('/alunos');
-    }
+public function update(AlunoRequest $request, $id)
+{
+    $aluno = Aluno::findOrFail($id);
+    $aluno->update($request->validated());
+    return redirect('/alunos');
+}
 
     public function destroy($id)
     {
