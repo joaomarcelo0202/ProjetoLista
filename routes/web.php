@@ -18,3 +18,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+Route::get('/admin', function () {
+    return 'Área restrita para Admin';
+})->middleware('role:admin');
+
+Route::get('/professor', function () {
+    return 'Área restrita para Professor';
+})->middleware('role:professor');
