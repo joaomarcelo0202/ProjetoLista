@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cursos', function (Blueprint $table) {
-            $table->id();
-            $table->string('nome');
-            $table->timestamps();
-            $table->foreignId('curso_id')->nullable()->constrained('cursos');
-});
-
-
+        Schema::table('alunos', function (Blueprint $table) {
+            //
+        });
     }
 
     /**
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cursos');
+        Schema::table('alunos', function (Blueprint $table) {
+            //
+        });
     }
 };
