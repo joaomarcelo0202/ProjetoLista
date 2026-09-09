@@ -35,5 +35,9 @@ class Aluno extends Model
     {
     return $this->belongsTo(Curso::class);
     }
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
 
 }
