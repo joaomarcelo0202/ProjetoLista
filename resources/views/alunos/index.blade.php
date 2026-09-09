@@ -1,20 +1,35 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Lista de Alunos
+        </h2>
+    </x-slot>
 
-@section('title', 'Lista de Alunos')
+    <div class="py-12">
+        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
 
-@section('content')
-    <h1>Alunos</h1>
+            @if(count($alunos) > 0)
+                <ul>
+                    @foreach($alunos as $aluno)
+                        <li>
+                            <a href="/alunos/{{ $aluno->id }}">{{ $aluno->nome }}</a>
 
-    @if(count($alunos) > 0)
-        <ul>
-            @foreach($alunos as $aluno)
-                <li>
-                    <a href="/alunos/{{ $aluno->id }}">{{ $aluno->nome }}</a>
-                </li>
-            @endforeach
-        </ul>
-    @else
-        <p>Nenhum aluno cadastrado.</p>
-    @endif
-@endsection
-<h1>Lista de Alunos</h1>
+                            <a href="/alunos/{{ $aluno->id }}/edit">Editar</a>
+
+                            <form action="/alunos/{{ $aluno->id }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir?')">
+                                    Excluir
+                                </button>
+                            </form>
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <p>Nenhum aluno cadastrado.</p>
+            @endif
+
+        </div>
+    </div>
+</x-app-layout>
